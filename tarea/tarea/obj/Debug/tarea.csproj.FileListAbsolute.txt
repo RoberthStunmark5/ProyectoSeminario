@@ -1,0 +1,7 @@
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\bin\tarea.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\bin\tarea.pdb
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\bin\EntityFramework.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\bin\EntityFramework.xml
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\obj\Debug\ResolveAssemblyReference.cache
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\obj\Debug\tarea.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\tarea\tarea\obj\Debug\tarea.pdb

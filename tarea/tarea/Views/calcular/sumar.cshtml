@@ -1,0 +1,14 @@
+﻿@model tarea.Models.calculo
+
+@{
+    ViewBag.Title = "sumar";
+}
+
+<h2>sumar</h2>
+@using(@Html.BeginForm())
+{
+    @Html.TextBoxFor(s => s.a);
+    @Html.TextBoxFor(s => s.b);
+    <input type = "submit" value="calcular" />
+}
+@ViewBag.resultado
