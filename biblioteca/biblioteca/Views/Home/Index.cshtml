@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Biblioteca de Contenidos Colectivos";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    Para obtener más información sobre ASP.NET MVC, visite el <a href="http://asp.net/mvc" title="Aqui se direcciona a otro lado"> http://asp.net/mvc </a>.
+</p>
+@section sidebar
+{
+<p>Esta sidebar tiene contenido especifico de "home page"</p>
+<ul>
+<li><a href="#"> Uno</a></li>
+<li><a href="#"> Dos</a></li>
+<li><a href="#"> Tres</a></li>
+<li><a href="#"> Cuatro</a></li>
+<li><a href="#"> Cinco</a></li>
+<li><a href="#"> Seis</a></li>
+</ul>
+<p>La Hora Es:@DateTime.Now.ToShortTimeString()</p>
+}

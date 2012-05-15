@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="biblioteca" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VAIOROBERTH-PC\SQLEXPRESS;Initial Catalog=biblioteca;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="bibliotecaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Captcha" Member="Captcha">
+    <Type Name="Captcha">
+      <Column Name="idcaptcha" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Url" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Significado" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categoria" Member="Categoria">
+    <Type Name="Categoria">
+      <Column Name="IdCategoria" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Genero" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Categoria_Categorizacion" Member="Categorizacion" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="Categorizacion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Articulo" Member="Articulo">
+    <Type Name="Articulo">
+      <Column Name="IdArticulo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Contenido" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UrlImagenes" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="TotalMeGusta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Usuario_Articulo" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Roles" Member="aspnet_Roles">
+    <Type Name="aspnet_Roles">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredRoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Association Name="aspnet_Roles_aspnet_UsersInRoles" Member="aspnet_UsersInRoles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_UsersInRoles" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_Users">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="aspnet_UsersInRoles" />
+      <Association Name="aspnet_Users_Usuario" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_UsersInRoles" Member="aspnet_UsersInRoles">
+    <Type Name="aspnet_UsersInRoles">
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="aspnet_Roles_aspnet_UsersInRoles" Member="aspnet_Roles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_Roles" IsForeignKey="true" />
+      <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categorizacion" Member="Categorizacion">
+    <Type Name="Categorizacion">
+      <Column Name="IdMisc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IdCategoria" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Categoria_Categorizacion" Member="Categoria" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="Categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comentario" Member="Comentario">
+    <Type Name="Comentario">
+      <Column Name="IdComentario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Contenido" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Usuario_Comentario" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Curso" Member="Curso">
+    <Type Name="Curso">
+      <Column Name="IdCurso" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Indice" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Contenido" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TotalMeGusta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Usuario_Curso" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Libro" Member="Libro">
+    <Type Name="Libro">
+      <Column Name="IdLibro" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UrlPortada" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Autor" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="AñoPublicacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Tema" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TotalMeGusta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Usuario_Libro" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MeGusta" Member="MeGusta">
+    <Type Name="MeGusta">
+      <Column Name="IdMeGusta" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdMisc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Origen" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_MeGusta" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Moderacion" Member="Moderacion">
+    <Type Name="Moderacion">
+      <Column Name="PalabraOfensiva" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tutorial" Member="Tutorial">
+    <Type Name="Tutorial">
+      <Column Name="IdTutorial" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Indice" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contenido" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalMeGusta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrlImagenes" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Usuario_Tutorial" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="App" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Apm" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="NickName" Type="System.String" DbType="NChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="UrlAvatar" Type="System.String" DbType="NChar(40)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Intereses" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Ubicacion" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="KarmaTotal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Usuario_Articulo" Member="Articulo" ThisKey="UserId" OtherKey="UserId" Type="Articulo" />
+      <Association Name="Usuario_Comentario" Member="Comentario" ThisKey="UserId" OtherKey="UserId" Type="Comentario" />
+      <Association Name="Usuario_Curso" Member="Curso" ThisKey="UserId" OtherKey="UserId" Type="Curso" />
+      <Association Name="Usuario_Libro" Member="Libro" ThisKey="UserId" OtherKey="UserId" Type="Libro" />
+      <Association Name="Usuario_MeGusta" Member="MeGusta" ThisKey="UserId" OtherKey="UserId" Type="MeGusta" />
+      <Association Name="Usuario_Tutorial" Member="Tutorial" ThisKey="UserId" OtherKey="UserId" Type="Tutorial" />
+      <Association Name="aspnet_Users_Usuario" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

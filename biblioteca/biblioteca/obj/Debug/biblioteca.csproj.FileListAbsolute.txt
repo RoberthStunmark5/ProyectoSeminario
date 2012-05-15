@@ -1,0 +1,7 @@
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\bin\biblioteca.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\bin\biblioteca.pdb
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\bin\EntityFramework.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\bin\EntityFramework.xml
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\obj\Debug\ResolveAssemblyReference.cache
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\obj\Debug\biblioteca.dll
+c:\users\vaio roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\obj\Debug\biblioteca.pdb
