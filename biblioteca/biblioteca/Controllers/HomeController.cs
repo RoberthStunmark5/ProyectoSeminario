@@ -10,7 +10,7 @@ namespace biblioteca.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Biblioteca de contenidos colectivos";
+            ViewBag.Message = "";
 
             return View();
         }

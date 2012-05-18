@@ -38,7 +38,7 @@ namespace biblioteca.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("About", "Home");
                     }
                 }
                 else
@@ -83,6 +83,13 @@ namespace biblioteca.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    DataClasses1DataContext db = new DataClasses1DataContext();
+                    System.Guid idus = db.aspnet_Users.Where(a => a.UserName == model.UserName).Select(a => a.UserId).ToArray()[0];
+                    System.Guid idrol = db.aspnet_Roles.Where(a => a.RoleName == "usuario").Select(a => a.RoleId).ToArray()[0];
+                    aspnet_UsersInRoles rel = new aspnet_UsersInRoles() { RoleId = idrol, UserId = idus };
+                    db.aspnet_UsersInRoles.InsertOnSubmit(rel);
+                    db.SubmitChanges();
+                    
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }

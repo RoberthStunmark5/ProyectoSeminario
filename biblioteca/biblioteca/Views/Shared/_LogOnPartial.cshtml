@@ -1,5 +1,5 @@
 ﻿@if(Request.IsAuthenticated) {
-    <text>¡Hola <strong>@User.Identity.Name</strong>!
+    <text>   <strong>@User.Identity.Name</strong>   
     [ @Html.ActionLink("Cerrar Sesión", "LogOff", "Account") ]</text>
 }
 else {

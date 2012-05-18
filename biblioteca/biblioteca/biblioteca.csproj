@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -114,6 +115,7 @@
     <Content Include="Content\themes\smallwindow\images\img04.jpg" />
     <Content Include="Content\themes\smallwindow\images\img05.jpg" />
     <Content Include="Content\themes\smallwindow\images\img06.jpg" />
+    <Content Include="Content\themes\smallwindow\images\img07.jpg" />
     <Content Include="Views\Shared\_Session.cshtml" />
     <None Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Global.asax" />
@@ -158,6 +160,8 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Usuario\Usuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

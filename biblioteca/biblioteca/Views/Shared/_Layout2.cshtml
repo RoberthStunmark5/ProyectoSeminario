@@ -18,14 +18,14 @@
                         @Html.Partial("_LogOnPartial")
                     </div>
 	        <h1><a href="#">Biblioteca de Contenidos Colectivos </a></h1>
-	        <p>Diseñado para Seminario de Sistemas</p>
+	        <p>  de @User.Identity.Name</p>
         </div>
             <nav id="menu">
 	            <ul id="main">
 		            <li>@Html.ActionLink("Principal", "Index", "Home")</li>
                     
                      @if (@User.Identity.IsAuthenticated)
-                     {   <li>@Html.ActionLink("Mi Perfil", "Usuario", "Usuario")</li>
+                     {   
                          <li>@Html.ActionLink("Publicar Libro", "", "")</li>
                          <li>@Html.ActionLink("Crear Articulo", "", "")</li>
                          <li>@Html.ActionLink("Crear Curso", "", "")</li>
@@ -35,9 +35,8 @@
 	            </ul>
 	            @if (@User.Identity.IsAuthenticated == false)
              {<ul id="feed">
-             <li>@Html.ActionLink("Acerca de Nosotros", "About", "Home")</li>
-                <li><a href="#">Noticias</a></li>
-		            <li><a href="#">Comentarios </a></li>
+                <li>@Html.ActionLink("Acerca de Nosotros", "About", "Home")</li>
+		            
 	            </ul>}
             </nav>
 </div>
@@ -50,7 +49,7 @@
 	<div id="content">
 		<div style="padding-bottom: 20px;"><img src="../../Content/themes/smallwindow/images/image05.jpg" alt="" /></div>
 		<div class="post">
-			<h1 class="title"><a href="#">Bienvenido A Nuestro Sitio</a></h1>
+			<h1 class="title"><a href="#">Perfil de @User.Identity.Name</a></h1>
 			<p class="byline"><small>Diseñado por:  <a href="http://www.facebook.com/RoberthStun/" title="Roberth_Stun@hotmail.com">Roberto Campos</a></small></p>
 			<div class="entry">
 				@RenderBody()
@@ -58,10 +57,8 @@
 		</div>
 		
         @if (IsSectionDefined("libro_top"))
-        {@RenderSection("libro_top")}
-        else
-        { <div class="post">
-            <h2 class="title"><a href="#">Libro Destacado</a></h2>
+        {<div class="post">
+            <h2 class="title"><a href="#">Mi Libro Mas Destacado</a></h2>
 			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
 			<div class="entry">
 				<p>dererkfm. </p>
@@ -75,42 +72,23 @@
 				</form>
 			</div>
             </div>
+            @RenderSection("libro_top")}
+        else
+        {
         }
 		@if (IsSectionDefined("articulo_top"))
   {@RenderSection("articulo_top")}
   else
-  { <div class="post">
-            <h2 class="title"><a href="#">Articulo Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more">leer historia completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
-            </div>
+  {
   }
         @if (IsSectionDefined("curso_top"))
         {@RenderSection("curso_top")}
         else
-        { <div class="post">
-			<h2 class="title"><a href="#">Cursos destacado</a></h2>
-			<p class="byline"><small>Posteado en ...... 1st, 2012 por <a href="#">dfdfjkjfplates</a></small></p>
-			<div class="entry">
-				<p>Pkjlskdjfslkdjflskdjfklsdjflkfwpeotiwpoejgk;lsdgkw[epg[pek[pgekgl;sdkgw[pekwg. </p>
-				<p class="links"><a href="#" class="more">Leer histori completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
-		</div>}
+        { }
         @if (IsSectionDefined("tutorial_top"))
         {@RenderSection("tutorial_top")}
         else
-        { <div class="post">
-            <h2 class="title"><a href="#">Tutorial Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more">leer historia completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
-            </div>
-        }
+        { }
 	</div>
 	<!-- end content -->
 	<!-- start sidebars -->

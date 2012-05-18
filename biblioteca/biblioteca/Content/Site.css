@@ -1,8 +1,4 @@
-﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
+﻿
 body {
     background-color: #5c87b2;
     font-size: .85em;
@@ -77,18 +73,19 @@ h5, h6 {
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
 .page {
-    width: 100%;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 42px 10px 55px #333;
 }
 
 header, #header 
-{
+{width: 326px;
 background-color:#5c87b2;
 background-size:16px 16px;
     position: relative;
     margin-bottom: 0px;
+    float:outside;
     color: #000;
     padding: 0;
     box-shadow: 40px 10px 55px #333;
@@ -192,12 +189,12 @@ footer,
 
 /*	TAB MENU   
 ----------------------------------------------------------*/
-ul#menu {
+ul#menu {background: url(C:\Users\VAIO Roberth\documents\visual studio 2010\Projects\biblioteca\biblioteca\Content\themes\smallwindow\images\img02.jpg) repeat-x left top;
     border-bottom: 1px #5C87B2 solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
-    text-align: right;
+    text-align: center;
 }
 
 ul#menu li {

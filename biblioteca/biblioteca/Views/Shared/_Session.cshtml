@@ -14,17 +14,19 @@
 
 <body>
 
-  <div id="container">
+ 
     <header>
-        <div>  @Html.Partial("_LogOnPartial")</div>
-        <p><strong>INICIE AQUI SU SESSION</strong> - <a href="#"> PARA PODER ACCEDER A MAS OPCIONES</a></p>
-
-        <p><strong> Esta es la pagina de inicio de session y tambien sirve para registrarse</strong> - <a href="#">para todos o usuarios registrados</a></p>
-
-        <p>Siguenos <a href="#">en </a>buestra pagina de <a href="http://www.facebook.com/Roberth_Stun">Facebook</a>.</p>
-
-    </header>
-
+     <nav id="menu">
+	            <ul>
+		            <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Informacion", "About", "Home")</li>
+   	            
+		            <li><a href="#">Noticias</a></li>
+		            <li><a href="#">Comentarios </a></li>
+	            </ul>
+            </nav>
+      </header>
+     <div id="container">
     	<div id="main" role="main">
 
 

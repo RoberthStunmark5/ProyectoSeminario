@@ -9,7 +9,7 @@ body {
 
 h1, h2, h3 {
 	margin-top: 0;
-	color: #6E6C00;
+	color: #FFFFFF;
 }
 
 h1 {
@@ -207,6 +207,9 @@ img.right {
 .post h2 {
 	font-size: 24px;
 }
+.post h3 {
+	font-size: 14px;
+}
 
 .title {
 	margin: 0;
@@ -292,6 +295,13 @@ img.right {
 	margin: 0 0 10px 0;
 	padding: 15px 15px 5px 15px;
 	font-size: 16px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+.sidebar li h3 {
+	margin: 0 0 10px 0;
+	padding: 15px 15px 5px 15px;
+	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
 }
