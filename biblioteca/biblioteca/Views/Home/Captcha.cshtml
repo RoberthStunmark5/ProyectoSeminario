@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Captcha";
+    Layout = "~/Views/Shared/_Captcha.cshtml";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        // Do the biznizz:
+        $('#mc-form').motionCaptcha({
+            shapes: ['triangle', 'x', 'rectangle', 'circle', 'check', 'zigzag', 'arrow', 'delete', 'pigtail', 'star']
+        });
+
+        // Yep:
+        $("input.placeholder").placeholder();
+    });
+	
+</script> 
+<div id="wrap">
+		<div id="page">
+        <h1>Motion Captcha</h1>
+        <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>
+        <h2>Dibuje Formas para detener posibles Spam</h2>
+        <form action="@Url.Action("LogOn1","Account")" id="mc-form"  method ="post" class = "mc-active">
+                <p><input class="placeholder" type="text" placeholder="Nombre de Usuario…" id ="nombre"/></p>
+				<p><input class="placeholder" type="password" placeholder="Contraseña…" id = "password"></p>
+				<p><textarea class="placeholder" placeholder="Tu Mensaje…" cols="" rows="3"></textarea></p>
+         
+         <div id="mc">
+            <p>Dibuje la forma en el cuadro para enviar su formulario: "("
+            <a onclick="window.location.reload()" href="#" title="Click para una nueva forma">Nueva Forma</a>")"</p>
+            <canvas id="mc-canvas">Tu navegador no soporta el elemento canvas - por favor visitanos en un navegador moderno</canvas>
+         </div>
+       <p><input type="submit" disabled="disabled" value="Enviar" /></p>
+       <p><input type="hidden" id="mc-action" value="@Url.Action("LogOn1","Account")" /></p>
+       <p><strong>NB:</strong>Esta es una nueva forma de autenticacion</p>
+</form>
+</div>
+	</div>

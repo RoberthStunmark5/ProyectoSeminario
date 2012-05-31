@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "subir Home";
+    Layout = "../Shared/_Session.cshtml";
+}
+<script>
+    $(document).ready(
+function () {
+    $("#file1").uploadify({
+        'swf': '../../Scripts/Uploadify/uploadify.swf',
+        'uploader': '@Url.Action("Upload","Home")',
+        'cancelImg': '.../.../Scripts/Uploadify/cancel.png',
+        'buttonText': 'Subir Foto',
+         'folder':'.../.../App_Data/UploadedFiles',
+        'fileDesc': 'Web Image Files (.JPG, .GIF, .PNG)',
+        'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+        'multi': false,
+        'auto': true
+    });
+});
+</script>
+<h2>subir</h2>
+<input id="file1" type="file" name="file1" />
+@ViewBag.file;

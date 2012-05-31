@@ -23,14 +23,14 @@
             <nav id="menu">
 	            <ul id="main">
 		            <li>@Html.ActionLink("Principal", "Index", "Home")</li>
-                    
+                    <li>@Html.ActionLink("Captcha","Captcha","Home")</li>
                      @if (@User.Identity.IsAuthenticated)
                      {   
-                         <li>@Html.ActionLink("Publicar Libro", "", "")</li>
-                         <li>@Html.ActionLink("Crear Articulo", "", "")</li>
-                         <li>@Html.ActionLink("Crear Curso", "", "")</li>
-                         <li>@Html.ActionLink("Crear Tutorial", "", "")</li>
-                         <li>@Html.ActionLink("Modificar Perfil", "", "")</li>
+                         <li>@Html.ActionLink("Publicar Libro", "publicar_libro", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Articulo", "crear_articulo", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Curso", "crear_curso", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Tutorial", "crear_tutorial", "Usuario")</li>
+                         <li>@Html.ActionLink("Modificar Perfil", "Perfil", "Account")</li>
                          <li>@Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Account")</li>}
 	            </ul>
 	            @if (@User.Identity.IsAuthenticated == false)
@@ -50,37 +50,21 @@
 		<div style="padding-bottom: 20px;"><img src="../../Content/themes/smallwindow/images/image05.jpg" alt="" /></div>
 		<div class="post">
 			<h1 class="title"><a href="#">Perfil de @User.Identity.Name</a></h1>
-			<p class="byline"><small>Diseñado por:  <a href="http://www.facebook.com/RoberthStun/" title="Roberth_Stun@hotmail.com">Roberto Campos</a></small></p>
 			<div class="entry">
 				@RenderBody()
       		</div>
 		</div>
 		
         @if (IsSectionDefined("libro_top"))
-        {<div class="post">
-            <h2 class="title"><a href="#">Mi Libro Mas Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >leer historia completa</a></p>
-                <p class="byline"><small>Comentar</small></p>
-                <form id="comentario_libro" method="get" action="#">
-					<div>
-						<input type="text" name="l" id="l" size="70%" value="" />
-						<br />
-					</div><p class="byline"><small>Comentar</small></p>
-				</form>
-			</div>
-            </div>
-            @RenderSection("libro_top")}
+        {   @RenderSection("libro_top")}
         else
         {
         }
 		@if (IsSectionDefined("articulo_top"))
-  {@RenderSection("articulo_top")}
-  else
-  {
-  }
+          {@RenderSection("articulo_top")}
+          else
+          {
+          }
         @if (IsSectionDefined("curso_top"))
         {@RenderSection("curso_top")}
         else
@@ -95,7 +79,7 @@
 	<div id="sidebar" class="sidebar">
 		<ul>
 			<li>
-				<h2>Articulos Recien Publicados</h2>
+				<h2>Mis Articulos Recien Publicados</h2>
 				@if (IsSectionDefined("articulos_recientes"))
     {
                     @RenderSection("articulos_recientes")
@@ -104,7 +88,7 @@
     {<ul><li>Sin Publicaciones</li></ul>}
 			</li>
 			<li>
-				<h2>Cursos Recien Publicados</h2>
+				<h2>Mis Cursos Recien Publicados</h2>
                 	@if (IsSectionDefined("cursos_recientes"))
                  {
                     @RenderSection("cursos_recientes")
@@ -114,7 +98,7 @@
 				
 			</li>
 			<li>
-				<h2>Tutoriales Recien Publicados</h2>
+				<h2>Mis Tutoriales Recien Publicados</h2>
 				@if (IsSectionDefined("tutoriales_recientes"))
     {
                     @RenderSection("tutoriales_recientes")
@@ -123,7 +107,7 @@
     {<ul><li>Sin Publicaciones</li></ul>}
 			</li>
 			<li>
-				<h2>Libros Recien Publicados</h2>
+				<h2>Mis Libros Recien Publicados</h2>
                 @if (IsSectionDefined("libros_recientes"))
                 {
                     @RenderSection("libros_recientes")
@@ -146,16 +130,16 @@
 				</form>
 			</li>
 			<li>
-				<h2>Sitios Relacionados</h2>
-				<p><a href="#">dalgor</a>
-                 <a href="#">otrodfipsum</a>
-                  <a href="#">ltredsforem</a>
-                   <a href="#">scuatroodit amet</a>
-                    <a href="#">cinciodolor</a>
+				<h2>Sitios Relacionados </h2>
+				<p><a href="#">www.dalgor.com</a>
+                 <a href="#">www.trodfipsum.com</a>
+                  <a href="#">www.ltredsforem.com</a>
+                   <a href="#">www.scuatroodit_amet.com</a>
+                    <a href="#">www.cinciodolor.com</a>
                      </p>
             </li>
             <li>
-				<h2>Categorias</h2>
+				<h2>Categorias Basicas</h2>
 				<ul>
 					<li><a href="#">terror</a></li>
 					<li><a href="#">comedia</a></li>

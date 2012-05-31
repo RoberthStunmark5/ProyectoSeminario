@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="biblioteca" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=VAIOROBERTH-PC\SQLEXPRESS;Initial Catalog=biblioteca;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="bibliotecaConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Captcha" Member="Captcha">
-    <Type Name="Captcha">
-      <Column Name="idcaptcha" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Url" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="Significado" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Categoria" Member="Categoria">
-    <Type Name="Categoria">
-      <Column Name="IdCategoria" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Genero" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="Categoria_Categorizacion" Member="Categorizacion" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="Categorizacion" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VAIOROBERTH-PC\SQLEXPRESS;Initial Catalog=biblioteca;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ApplicationServices" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Articulo" Member="Articulo">
     <Type Name="Articulo">
       <Column Name="IdArticulo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -23,7 +9,34 @@
       <Column Name="TotalMeGusta" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Usuario_Articulo" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Membership" Member="aspnet_Membership">
+    <Type Name="aspnet_Membership">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordFormat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordSalt" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MobilePIN" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="LoweredEmail" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PasswordQuestion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PasswordAnswer" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsLockedOut" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastPasswordChangedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLockoutDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAnswerAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAnswerAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="aspnet_Users_aspnet_Membership" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.aspnet_Roles" Member="aspnet_Roles">
@@ -45,6 +58,7 @@
       <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_Membership" Member="aspnet_Membership" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Membership" Cardinality="One" />
       <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="aspnet_UsersInRoles" />
       <Association Name="aspnet_Users_Usuario" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" Cardinality="One" />
     </Type>
@@ -55,6 +69,13 @@
       <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="aspnet_Roles_aspnet_UsersInRoles" Member="aspnet_Roles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_Roles" IsForeignKey="true" />
       <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categoria" Member="Categoria">
+    <Type Name="Categoria">
+      <Column Name="IdCategoria" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Genero" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Categoria_Categorizacion" Member="Categorizacion" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="Categorizacion" />
     </Type>
   </Table>
   <Table Name="dbo.Categorizacion" Member="Categorizacion">
@@ -72,6 +93,7 @@
       <Column Name="Origen" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Contenido" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdMisc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="Usuario_Comentario" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
@@ -81,10 +103,10 @@
       <Column Name="Titulo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Indice" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Contenido" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TotalMeGusta" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Usuario_Curso" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
@@ -100,6 +122,7 @@
       <Column Name="TotalMeGusta" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CantidadComentarios" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FechaPublicacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Usuario_Libro" Member="Usuario" ThisKey="UserId" OtherKey="UserId" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
@@ -139,10 +162,7 @@
       <Column Name="Nombre" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
       <Column Name="App" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Apm" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="NickName" Type="System.String" DbType="NChar(25) NOT NULL" CanBeNull="false" />
       <Column Name="UrlAvatar" Type="System.String" DbType="NChar(40)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="Intereses" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
       <Column Name="Ubicacion" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="KarmaTotal" Type="System.Double" DbType="Float" CanBeNull="true" />

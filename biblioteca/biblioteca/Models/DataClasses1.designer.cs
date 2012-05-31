@@ -30,15 +30,12 @@ namespace biblioteca.Models
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertCaptcha(Captcha instance);
-    partial void UpdateCaptcha(Captcha instance);
-    partial void DeleteCaptcha(Captcha instance);
-    partial void InsertCategoria(Categoria instance);
-    partial void UpdateCategoria(Categoria instance);
-    partial void DeleteCategoria(Categoria instance);
     partial void InsertArticulo(Articulo instance);
     partial void UpdateArticulo(Articulo instance);
     partial void DeleteArticulo(Articulo instance);
+    partial void Insertaspnet_Membership(aspnet_Membership instance);
+    partial void Updateaspnet_Membership(aspnet_Membership instance);
+    partial void Deleteaspnet_Membership(aspnet_Membership instance);
     partial void Insertaspnet_Roles(aspnet_Roles instance);
     partial void Updateaspnet_Roles(aspnet_Roles instance);
     partial void Deleteaspnet_Roles(aspnet_Roles instance);
@@ -48,6 +45,9 @@ namespace biblioteca.Models
     partial void Insertaspnet_UsersInRoles(aspnet_UsersInRoles instance);
     partial void Updateaspnet_UsersInRoles(aspnet_UsersInRoles instance);
     partial void Deleteaspnet_UsersInRoles(aspnet_UsersInRoles instance);
+    partial void InsertCategoria(Categoria instance);
+    partial void UpdateCategoria(Categoria instance);
+    partial void DeleteCategoria(Categoria instance);
     partial void InsertComentario(Comentario instance);
     partial void UpdateComentario(Comentario instance);
     partial void DeleteComentario(Comentario instance);
@@ -69,7 +69,7 @@ namespace biblioteca.Models
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["bibliotecaConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -98,27 +98,19 @@ namespace biblioteca.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Captcha> Captcha
-		{
-			get
-			{
-				return this.GetTable<Captcha>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Categoria> Categoria
-		{
-			get
-			{
-				return this.GetTable<Categoria>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Articulo> Articulo
 		{
 			get
 			{
 				return this.GetTable<Articulo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<aspnet_Membership> aspnet_Membership
+		{
+			get
+			{
+				return this.GetTable<aspnet_Membership>();
 			}
 		}
 		
@@ -143,6 +135,14 @@ namespace biblioteca.Models
 			get
 			{
 				return this.GetTable<aspnet_UsersInRoles>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Categoria> Categoria
+		{
+			get
+			{
+				return this.GetTable<Categoria>();
 			}
 		}
 		
@@ -211,202 +211,6 @@ namespace biblioteca.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Captcha")]
-	public partial class Captcha : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _idcaptcha;
-		
-		private string _Url;
-		
-		private string _Significado;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidcaptchaChanging(System.Guid value);
-    partial void OnidcaptchaChanged();
-    partial void OnUrlChanging(string value);
-    partial void OnUrlChanged();
-    partial void OnSignificadoChanging(string value);
-    partial void OnSignificadoChanged();
-    #endregion
-		
-		public Captcha()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idcaptcha", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid idcaptcha
-		{
-			get
-			{
-				return this._idcaptcha;
-			}
-			set
-			{
-				if ((this._idcaptcha != value))
-				{
-					this.OnidcaptchaChanging(value);
-					this.SendPropertyChanging();
-					this._idcaptcha = value;
-					this.SendPropertyChanged("idcaptcha");
-					this.OnidcaptchaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="NChar(10)")]
-		public string Url
-		{
-			get
-			{
-				return this._Url;
-			}
-			set
-			{
-				if ((this._Url != value))
-				{
-					this.OnUrlChanging(value);
-					this.SendPropertyChanging();
-					this._Url = value;
-					this.SendPropertyChanged("Url");
-					this.OnUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Significado", DbType="NChar(10)")]
-		public string Significado
-		{
-			get
-			{
-				return this._Significado;
-			}
-			set
-			{
-				if ((this._Significado != value))
-				{
-					this.OnSignificadoChanging(value);
-					this.SendPropertyChanging();
-					this._Significado = value;
-					this.SendPropertyChanged("Significado");
-					this.OnSignificadoChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categoria")]
-	public partial class Categoria : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _IdCategoria;
-		
-		private string _Genero;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdCategoriaChanging(System.Guid value);
-    partial void OnIdCategoriaChanged();
-    partial void OnGeneroChanging(string value);
-    partial void OnGeneroChanged();
-    #endregion
-		
-		public Categoria()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCategoria", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid IdCategoria
-		{
-			get
-			{
-				return this._IdCategoria;
-			}
-			set
-			{
-				if ((this._IdCategoria != value))
-				{
-					this.OnIdCategoriaChanging(value);
-					this.SendPropertyChanging();
-					this._IdCategoria = value;
-					this.SendPropertyChanged("IdCategoria");
-					this.OnIdCategoriaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="NChar(10)")]
-		public string Genero
-		{
-			get
-			{
-				return this._Genero;
-			}
-			set
-			{
-				if ((this._Genero != value))
-				{
-					this.OnGeneroChanging(value);
-					this.SendPropertyChanging();
-					this._Genero = value;
-					this.SendPropertyChanged("Genero");
-					this.OnGeneroChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Articulo")]
 	public partial class Articulo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -426,6 +230,8 @@ namespace biblioteca.Models
 		private System.Nullable<int> _CantidadComentarios;
 		
 		private System.Nullable<System.Guid> _UserId;
+		
+		private System.Nullable<System.DateTime> _FechaPublicacion;
 		
 		private EntityRef<Usuario> _Usuario;
 		
@@ -447,6 +253,8 @@ namespace biblioteca.Models
     partial void OnCantidadComentariosChanged();
     partial void OnUserIdChanging(System.Nullable<System.Guid> value);
     partial void OnUserIdChanged();
+    partial void OnFechaPublicacionChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaPublicacionChanged();
     #endregion
 		
 		public Articulo()
@@ -599,6 +407,26 @@ namespace biblioteca.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaPublicacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaPublicacion
+		{
+			get
+			{
+				return this._FechaPublicacion;
+			}
+			set
+			{
+				if ((this._FechaPublicacion != value))
+				{
+					this.OnFechaPublicacionChanging(value);
+					this.SendPropertyChanging();
+					this._FechaPublicacion = value;
+					this.SendPropertyChanged("FechaPublicacion");
+					this.OnFechaPublicacionChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Articulo", Storage="_Usuario", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
 		public Usuario Usuario
 		{
@@ -629,6 +457,589 @@ namespace biblioteca.Models
 						this._UserId = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.aspnet_Membership")]
+	public partial class aspnet_Membership : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ApplicationId;
+		
+		private System.Guid _UserId;
+		
+		private string _Password;
+		
+		private int _PasswordFormat;
+		
+		private string _PasswordSalt;
+		
+		private string _MobilePIN;
+		
+		private string _Email;
+		
+		private string _LoweredEmail;
+		
+		private string _PasswordQuestion;
+		
+		private string _PasswordAnswer;
+		
+		private bool _IsApproved;
+		
+		private bool _IsLockedOut;
+		
+		private System.DateTime _CreateDate;
+		
+		private System.DateTime _LastLoginDate;
+		
+		private System.DateTime _LastPasswordChangedDate;
+		
+		private System.DateTime _LastLockoutDate;
+		
+		private int _FailedPasswordAttemptCount;
+		
+		private System.DateTime _FailedPasswordAttemptWindowStart;
+		
+		private int _FailedPasswordAnswerAttemptCount;
+		
+		private System.DateTime _FailedPasswordAnswerAttemptWindowStart;
+		
+		private string _Comment;
+		
+		private EntityRef<aspnet_Users> _aspnet_Users;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnApplicationIdChanging(System.Guid value);
+    partial void OnApplicationIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnPasswordFormatChanging(int value);
+    partial void OnPasswordFormatChanged();
+    partial void OnPasswordSaltChanging(string value);
+    partial void OnPasswordSaltChanged();
+    partial void OnMobilePINChanging(string value);
+    partial void OnMobilePINChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnLoweredEmailChanging(string value);
+    partial void OnLoweredEmailChanged();
+    partial void OnPasswordQuestionChanging(string value);
+    partial void OnPasswordQuestionChanged();
+    partial void OnPasswordAnswerChanging(string value);
+    partial void OnPasswordAnswerChanged();
+    partial void OnIsApprovedChanging(bool value);
+    partial void OnIsApprovedChanged();
+    partial void OnIsLockedOutChanging(bool value);
+    partial void OnIsLockedOutChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    partial void OnLastLoginDateChanging(System.DateTime value);
+    partial void OnLastLoginDateChanged();
+    partial void OnLastPasswordChangedDateChanging(System.DateTime value);
+    partial void OnLastPasswordChangedDateChanged();
+    partial void OnLastLockoutDateChanging(System.DateTime value);
+    partial void OnLastLockoutDateChanged();
+    partial void OnFailedPasswordAttemptCountChanging(int value);
+    partial void OnFailedPasswordAttemptCountChanged();
+    partial void OnFailedPasswordAttemptWindowStartChanging(System.DateTime value);
+    partial void OnFailedPasswordAttemptWindowStartChanged();
+    partial void OnFailedPasswordAnswerAttemptCountChanging(int value);
+    partial void OnFailedPasswordAnswerAttemptCountChanged();
+    partial void OnFailedPasswordAnswerAttemptWindowStartChanging(System.DateTime value);
+    partial void OnFailedPasswordAnswerAttemptWindowStartChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    #endregion
+		
+		public aspnet_Membership()
+		{
+			this._aspnet_Users = default(EntityRef<aspnet_Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApplicationId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._aspnet_Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordFormat", DbType="Int NOT NULL")]
+		public int PasswordFormat
+		{
+			get
+			{
+				return this._PasswordFormat;
+			}
+			set
+			{
+				if ((this._PasswordFormat != value))
+				{
+					this.OnPasswordFormatChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordFormat = value;
+					this.SendPropertyChanged("PasswordFormat");
+					this.OnPasswordFormatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordSalt", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string PasswordSalt
+		{
+			get
+			{
+				return this._PasswordSalt;
+			}
+			set
+			{
+				if ((this._PasswordSalt != value))
+				{
+					this.OnPasswordSaltChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordSalt = value;
+					this.SendPropertyChanged("PasswordSalt");
+					this.OnPasswordSaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobilePIN", DbType="NVarChar(16)")]
+		public string MobilePIN
+		{
+			get
+			{
+				return this._MobilePIN;
+			}
+			set
+			{
+				if ((this._MobilePIN != value))
+				{
+					this.OnMobilePINChanging(value);
+					this.SendPropertyChanging();
+					this._MobilePIN = value;
+					this.SendPropertyChanged("MobilePIN");
+					this.OnMobilePINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoweredEmail", DbType="NVarChar(256)")]
+		public string LoweredEmail
+		{
+			get
+			{
+				return this._LoweredEmail;
+			}
+			set
+			{
+				if ((this._LoweredEmail != value))
+				{
+					this.OnLoweredEmailChanging(value);
+					this.SendPropertyChanging();
+					this._LoweredEmail = value;
+					this.SendPropertyChanged("LoweredEmail");
+					this.OnLoweredEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordQuestion", DbType="NVarChar(256)")]
+		public string PasswordQuestion
+		{
+			get
+			{
+				return this._PasswordQuestion;
+			}
+			set
+			{
+				if ((this._PasswordQuestion != value))
+				{
+					this.OnPasswordQuestionChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordQuestion = value;
+					this.SendPropertyChanged("PasswordQuestion");
+					this.OnPasswordQuestionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordAnswer", DbType="NVarChar(128)")]
+		public string PasswordAnswer
+		{
+			get
+			{
+				return this._PasswordAnswer;
+			}
+			set
+			{
+				if ((this._PasswordAnswer != value))
+				{
+					this.OnPasswordAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordAnswer = value;
+					this.SendPropertyChanged("PasswordAnswer");
+					this.OnPasswordAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsApproved", DbType="Bit NOT NULL")]
+		public bool IsApproved
+		{
+			get
+			{
+				return this._IsApproved;
+			}
+			set
+			{
+				if ((this._IsApproved != value))
+				{
+					this.OnIsApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._IsApproved = value;
+					this.SendPropertyChanged("IsApproved");
+					this.OnIsApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLockedOut", DbType="Bit NOT NULL")]
+		public bool IsLockedOut
+		{
+			get
+			{
+				return this._IsLockedOut;
+			}
+			set
+			{
+				if ((this._IsLockedOut != value))
+				{
+					this.OnIsLockedOutChanging(value);
+					this.SendPropertyChanging();
+					this._IsLockedOut = value;
+					this.SendPropertyChanged("IsLockedOut");
+					this.OnIsLockedOutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastLoginDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LastLoginDate
+		{
+			get
+			{
+				return this._LastLoginDate;
+			}
+			set
+			{
+				if ((this._LastLoginDate != value))
+				{
+					this.OnLastLoginDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastLoginDate = value;
+					this.SendPropertyChanged("LastLoginDate");
+					this.OnLastLoginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastPasswordChangedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LastPasswordChangedDate
+		{
+			get
+			{
+				return this._LastPasswordChangedDate;
+			}
+			set
+			{
+				if ((this._LastPasswordChangedDate != value))
+				{
+					this.OnLastPasswordChangedDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastPasswordChangedDate = value;
+					this.SendPropertyChanged("LastPasswordChangedDate");
+					this.OnLastPasswordChangedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastLockoutDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LastLockoutDate
+		{
+			get
+			{
+				return this._LastLockoutDate;
+			}
+			set
+			{
+				if ((this._LastLockoutDate != value))
+				{
+					this.OnLastLockoutDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastLockoutDate = value;
+					this.SendPropertyChanged("LastLockoutDate");
+					this.OnLastLockoutDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FailedPasswordAttemptCount", DbType="Int NOT NULL")]
+		public int FailedPasswordAttemptCount
+		{
+			get
+			{
+				return this._FailedPasswordAttemptCount;
+			}
+			set
+			{
+				if ((this._FailedPasswordAttemptCount != value))
+				{
+					this.OnFailedPasswordAttemptCountChanging(value);
+					this.SendPropertyChanging();
+					this._FailedPasswordAttemptCount = value;
+					this.SendPropertyChanged("FailedPasswordAttemptCount");
+					this.OnFailedPasswordAttemptCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FailedPasswordAttemptWindowStart", DbType="DateTime NOT NULL")]
+		public System.DateTime FailedPasswordAttemptWindowStart
+		{
+			get
+			{
+				return this._FailedPasswordAttemptWindowStart;
+			}
+			set
+			{
+				if ((this._FailedPasswordAttemptWindowStart != value))
+				{
+					this.OnFailedPasswordAttemptWindowStartChanging(value);
+					this.SendPropertyChanging();
+					this._FailedPasswordAttemptWindowStart = value;
+					this.SendPropertyChanged("FailedPasswordAttemptWindowStart");
+					this.OnFailedPasswordAttemptWindowStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FailedPasswordAnswerAttemptCount", DbType="Int NOT NULL")]
+		public int FailedPasswordAnswerAttemptCount
+		{
+			get
+			{
+				return this._FailedPasswordAnswerAttemptCount;
+			}
+			set
+			{
+				if ((this._FailedPasswordAnswerAttemptCount != value))
+				{
+					this.OnFailedPasswordAnswerAttemptCountChanging(value);
+					this.SendPropertyChanging();
+					this._FailedPasswordAnswerAttemptCount = value;
+					this.SendPropertyChanged("FailedPasswordAnswerAttemptCount");
+					this.OnFailedPasswordAnswerAttemptCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FailedPasswordAnswerAttemptWindowStart", DbType="DateTime NOT NULL")]
+		public System.DateTime FailedPasswordAnswerAttemptWindowStart
+		{
+			get
+			{
+				return this._FailedPasswordAnswerAttemptWindowStart;
+			}
+			set
+			{
+				if ((this._FailedPasswordAnswerAttemptWindowStart != value))
+				{
+					this.OnFailedPasswordAnswerAttemptWindowStartChanging(value);
+					this.SendPropertyChanging();
+					this._FailedPasswordAnswerAttemptWindowStart = value;
+					this.SendPropertyChanged("FailedPasswordAnswerAttemptWindowStart");
+					this.OnFailedPasswordAnswerAttemptWindowStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_aspnet_Membership", Storage="_aspnet_Users", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public aspnet_Users aspnet_Users
+		{
+			get
+			{
+				return this._aspnet_Users.Entity;
+			}
+			set
+			{
+				aspnet_Users previousValue = this._aspnet_Users.Entity;
+				if (((previousValue != value) 
+							|| (this._aspnet_Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._aspnet_Users.Entity = null;
+						previousValue.aspnet_Membership = null;
+					}
+					this._aspnet_Users.Entity = value;
+					if ((value != null))
+					{
+						value.aspnet_Membership = this;
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(System.Guid);
+					}
+					this.SendPropertyChanged("aspnet_Users");
 				}
 			}
 		}
@@ -860,6 +1271,8 @@ namespace biblioteca.Models
 		
 		private System.DateTime _LastActivityDate;
 		
+		private EntityRef<aspnet_Membership> _aspnet_Membership;
+		
 		private EntitySet<aspnet_UsersInRoles> _aspnet_UsersInRoles;
 		
 		private EntityRef<Usuario> _Usuario;
@@ -886,6 +1299,7 @@ namespace biblioteca.Models
 		
 		public aspnet_Users()
 		{
+			this._aspnet_Membership = default(EntityRef<aspnet_Membership>);
 			this._aspnet_UsersInRoles = new EntitySet<aspnet_UsersInRoles>(new Action<aspnet_UsersInRoles>(this.attach_aspnet_UsersInRoles), new Action<aspnet_UsersInRoles>(this.detach_aspnet_UsersInRoles));
 			this._Usuario = default(EntityRef<Usuario>);
 			OnCreated();
@@ -1027,6 +1441,35 @@ namespace biblioteca.Models
 					this._LastActivityDate = value;
 					this.SendPropertyChanged("LastActivityDate");
 					this.OnLastActivityDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Users_aspnet_Membership", Storage="_aspnet_Membership", ThisKey="UserId", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public aspnet_Membership aspnet_Membership
+		{
+			get
+			{
+				return this._aspnet_Membership.Entity;
+			}
+			set
+			{
+				aspnet_Membership previousValue = this._aspnet_Membership.Entity;
+				if (((previousValue != value) 
+							|| (this._aspnet_Membership.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._aspnet_Membership.Entity = null;
+						previousValue.aspnet_Users = null;
+					}
+					this._aspnet_Membership.Entity = value;
+					if ((value != null))
+					{
+						value.aspnet_Users = this;
+					}
+					this.SendPropertyChanged("aspnet_Membership");
 				}
 			}
 		}
@@ -1274,6 +1717,92 @@ namespace biblioteca.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categoria")]
+	public partial class Categoria : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _IdCategoria;
+		
+		private string _Genero;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdCategoriaChanging(System.Guid value);
+    partial void OnIdCategoriaChanged();
+    partial void OnGeneroChanging(string value);
+    partial void OnGeneroChanged();
+    #endregion
+		
+		public Categoria()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCategoria", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid IdCategoria
+		{
+			get
+			{
+				return this._IdCategoria;
+			}
+			set
+			{
+				if ((this._IdCategoria != value))
+				{
+					this.OnIdCategoriaChanging(value);
+					this.SendPropertyChanging();
+					this._IdCategoria = value;
+					this.SendPropertyChanged("IdCategoria");
+					this.OnIdCategoriaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Genero", DbType="NChar(10)")]
+		public string Genero
+		{
+			get
+			{
+				return this._Genero;
+			}
+			set
+			{
+				if ((this._Genero != value))
+				{
+					this.OnGeneroChanging(value);
+					this.SendPropertyChanging();
+					this._Genero = value;
+					this.SendPropertyChanged("Genero");
+					this.OnGeneroChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorizacion")]
 	public partial class Categorizacion
 	{
@@ -1353,6 +1882,8 @@ namespace biblioteca.Models
 		
 		private string _Contenido;
 		
+		private System.Nullable<System.Guid> _IdMisc;
+		
 		private EntityRef<Usuario> _Usuario;
 		
     #region Definiciones de métodos de extensibilidad
@@ -1369,6 +1900,8 @@ namespace biblioteca.Models
     partial void OnFechaPublicacionChanged();
     partial void OnContenidoChanging(string value);
     partial void OnContenidoChanged();
+    partial void OnIdMiscChanging(System.Nullable<System.Guid> value);
+    partial void OnIdMiscChanged();
     #endregion
 		
 		public Comentario()
@@ -1481,6 +2014,26 @@ namespace biblioteca.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdMisc", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> IdMisc
+		{
+			get
+			{
+				return this._IdMisc;
+			}
+			set
+			{
+				if ((this._IdMisc != value))
+				{
+					this.OnIdMiscChanging(value);
+					this.SendPropertyChanging();
+					this._IdMisc = value;
+					this.SendPropertyChanged("IdMisc");
+					this.OnIdMiscChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Comentario", Storage="_Usuario", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
 		public Usuario Usuario
 		{
@@ -1550,13 +2103,13 @@ namespace biblioteca.Models
 		
 		private string _Contenido;
 		
-		private System.Nullable<System.DateTime> _FechaPublicacion;
-		
 		private System.Nullable<double> _TotalMeGusta;
 		
 		private System.Nullable<int> _CantidadComentarios;
 		
 		private System.Nullable<System.Guid> _UserId;
+		
+		private System.Nullable<System.DateTime> _FechaPublicacion;
 		
 		private EntityRef<Usuario> _Usuario;
 		
@@ -1572,14 +2125,14 @@ namespace biblioteca.Models
     partial void OnIndiceChanged();
     partial void OnContenidoChanging(string value);
     partial void OnContenidoChanged();
-    partial void OnFechaPublicacionChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaPublicacionChanged();
     partial void OnTotalMeGustaChanging(System.Nullable<double> value);
     partial void OnTotalMeGustaChanged();
     partial void OnCantidadComentariosChanging(System.Nullable<int> value);
     partial void OnCantidadComentariosChanged();
     partial void OnUserIdChanging(System.Nullable<System.Guid> value);
     partial void OnUserIdChanged();
+    partial void OnFechaPublicacionChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaPublicacionChanged();
     #endregion
 		
 		public Curso()
@@ -1668,26 +2221,6 @@ namespace biblioteca.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaPublicacion", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaPublicacion
-		{
-			get
-			{
-				return this._FechaPublicacion;
-			}
-			set
-			{
-				if ((this._FechaPublicacion != value))
-				{
-					this.OnFechaPublicacionChanging(value);
-					this.SendPropertyChanging();
-					this._FechaPublicacion = value;
-					this.SendPropertyChanged("FechaPublicacion");
-					this.OnFechaPublicacionChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalMeGusta", DbType="Float")]
 		public System.Nullable<double> TotalMeGusta
 		{
@@ -1748,6 +2281,26 @@ namespace biblioteca.Models
 					this._UserId = value;
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaPublicacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaPublicacion
+		{
+			get
+			{
+				return this._FechaPublicacion;
+			}
+			set
+			{
+				if ((this._FechaPublicacion != value))
+				{
+					this.OnFechaPublicacionChanging(value);
+					this.SendPropertyChanging();
+					this._FechaPublicacion = value;
+					this.SendPropertyChanged("FechaPublicacion");
+					this.OnFechaPublicacionChanged();
 				}
 			}
 		}
@@ -1833,6 +2386,8 @@ namespace biblioteca.Models
 		
 		private System.Nullable<System.Guid> _UserId;
 		
+		private System.Nullable<System.DateTime> _FechaPublicacion;
+		
 		private EntityRef<Usuario> _Usuario;
 		
     #region Definiciones de métodos de extensibilidad
@@ -1859,6 +2414,8 @@ namespace biblioteca.Models
     partial void OnCantidadComentariosChanged();
     partial void OnUserIdChanging(System.Nullable<System.Guid> value);
     partial void OnUserIdChanged();
+    partial void OnFechaPublicacionChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaPublicacionChanged();
     #endregion
 		
 		public Libro()
@@ -2067,6 +2624,26 @@ namespace biblioteca.Models
 					this._UserId = value;
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaPublicacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaPublicacion
+		{
+			get
+			{
+				return this._FechaPublicacion;
+			}
+			set
+			{
+				if ((this._FechaPublicacion != value))
+				{
+					this.OnFechaPublicacionChanging(value);
+					this.SendPropertyChanging();
+					this._FechaPublicacion = value;
+					this.SendPropertyChanged("FechaPublicacion");
+					this.OnFechaPublicacionChanged();
 				}
 			}
 		}
@@ -2685,13 +3262,7 @@ namespace biblioteca.Models
 		
 		private string _Apm;
 		
-		private string _NickName;
-		
 		private string _UrlAvatar;
-		
-		private string _Password;
-		
-		private string _Email;
 		
 		private string _Intereses;
 		
@@ -2725,14 +3296,8 @@ namespace biblioteca.Models
     partial void OnAppChanged();
     partial void OnApmChanging(string value);
     partial void OnApmChanged();
-    partial void OnNickNameChanging(string value);
-    partial void OnNickNameChanged();
     partial void OnUrlAvatarChanging(string value);
     partial void OnUrlAvatarChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
     partial void OnInteresesChanging(string value);
     partial void OnInteresesChanged();
     partial void OnUbicacionChanging(string value);
@@ -2837,26 +3402,6 @@ namespace biblioteca.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NickName", DbType="NChar(25) NOT NULL", CanBeNull=false)]
-		public string NickName
-		{
-			get
-			{
-				return this._NickName;
-			}
-			set
-			{
-				if ((this._NickName != value))
-				{
-					this.OnNickNameChanging(value);
-					this.SendPropertyChanging();
-					this._NickName = value;
-					this.SendPropertyChanged("NickName");
-					this.OnNickNameChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrlAvatar", DbType="NChar(40)")]
 		public string UrlAvatar
 		{
@@ -2873,46 +3418,6 @@ namespace biblioteca.Models
 					this._UrlAvatar = value;
 					this.SendPropertyChanged("UrlAvatar");
 					this.OnUrlAvatarChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NChar(20)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NChar(30) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
 				}
 			}
 		}

@@ -38,6 +38,9 @@
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -75,12 +78,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\usuarioview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\imagenes\pass.png" />
     <Content Include="Content\imagenes\user.png" />
+    <Content Include="Content\img\background_tile_1.jpg" />
+    <Content Include="Content\img\background_tile_2.jpg" />
+    <Content Include="Content\img\background_tile_3.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\blue_line.jpg" />
+    <Content Include="Content\img\done.png" />
+    <Content Include="Content\img\img01.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\motionCaptcha-shapes.jpg" />
+    <Content Include="Content\img\tzine.png" />
+    <Content Include="Content\jquery.motionCaptcha.0.2.css" />
+    <Content Include="Content\motionCaptcha.css" />
     <Content Include="Content\Perfil.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -116,7 +134,22 @@
     <Content Include="Content\themes\smallwindow\images\img05.jpg" />
     <Content Include="Content\themes\smallwindow\images\img06.jpg" />
     <Content Include="Content\themes\smallwindow\images\img07.jpg" />
+    <Content Include="Release Notes - Microsoft.Web.Helpers.txt" />
+    <Content Include="Scripts\jquery.filedrop.js" />
+    <Content Include="Scripts\jquery.motionCaptcha.0.2.js" />
+    <Content Include="Scripts\jquery.placeholder.1.1.1.min.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
     <Content Include="Views\Shared\_Session.cshtml" />
+    <Content Include="Views\Account\Perfil.cshtml" />
+    <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\Shared\_Captcha.cshtml" />
+    <Content Include="Views\Home\Captcha.cshtml" />
+    <None Include="Models\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -162,22 +195,28 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Usuario\Usuario.cshtml" />
+    <Content Include="Views\Usuario\publicar_libro.cshtml" />
+    <Content Include="Views\Usuario\crear_articulo.cshtml" />
+    <Content Include="Views\Usuario\crear_curso.cshtml" />
+    <Content Include="Views\Usuario\crear_tutorial.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Archivos\ArticulosImg\" />
+    <Folder Include="App_Data\Archivos\CursoImg\" />
+    <Folder Include="App_Data\Archivos\Libros\Img\" />
+    <Folder Include="App_Data\Archivos\Perfiles\" />
+    <Folder Include="App_Data\Archivos\TutorialesImg\" />
+    <Folder Include="App_Data\UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\DataClasses1.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\DataClasses1.dbml.layout">

@@ -2,21 +2,108 @@
     ViewBag.Title = "Principal";
 }
 
-<h2>@ViewBag.Message</h2>
 <p>
 Estamos dedicados a brindarte toda la informacion que necesitas y que se encuentra a nuestro alcance:
 </p>
+@section libro_top
+{@foreach(var item in @ViewBag.lista3)
+ {
+<div class="post">
+            <h2 class="title"><a href="#">Libro Destacado</a></h2>
+			<p class="byline"><small>Publicador:    <a href="#">@item.nombre @item.ap</a></small></p>
+			<div class="entry">
+            <h3>Titulo:   @item.titulo</h3>
+				<p>Descripcion:   @item.desc </p>
+				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >VER MAS</a></p>
+                <p class="byline"><small>Comentar</small></p>
+                
+			</div>
+            </div>break;
+    
+    }
+}
+@section articulo_top
+{@foreach(var item in @ViewBag.lista)
+ {<div class="post">
+            <h2 class="title"><a href="#">Articulo Destacado</a></h2>
+			<p class="byline"><small>Publicador:    <a href="#">@item.nombre @item.ap</a></small></p>
+			<div class="entry">
+				<h3>Titulo:   @item.titulo</h3>
+				<p>Descripcion:   @item.desc </p>
+				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >VER MAS</a></p>
+                <p class="byline"><small>Comentar</small></p>
+                
+			</div>
+            </div>break;
+                  }
+}
+@section tutorial_top
+{@foreach(var item in @ViewBag.lista2){
+<div class="post">
+            <h2 class="title"><a href="#">Tutorial Destacado</a></h2>
+			<p class="byline"><small>Publicador:    <a href="#">@item.nombre @item.ap</a></small></p>
+			<div class="entry">
+				<h3>Titulo:   @item.titulo</h3>
+				<p>Descripcion:   @item.desc </p>
+				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >VER MAS</a></p>
+                <p class="byline"><small>Comentar</small></p>
+                
+			</div>
+            </div>break;}
+}
+@section curso_top
+{@foreach(var item in @ViewBag.lista1){
+<div class="post">
+			<h2 class="title"><a href="#">Cursos destacado</a></h2>
+			<p class="byline"><small>publicador:    <a href="#">@item.nombre @item.ap</a></small></p>
+			<div class="entry">
+				<h3>Titulo:   @item.titulo</h3>
+				<p>Descripcion:   @item.desc </p>
+				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >VER MAS</a></p>
+                <p class="byline"><small>Comentar</small></p>
+                
+			</div>
+            </div>break;}
+}
 
 @section articulos_recientes
-{
-<p>Esta sidebar tiene contenido especifico de "home page"</p>
-<ul>
-<li><a href="#"> Uno</a></li>
-<li><a href="#"> Dos</a></li>
-<li><a href="#"> Tres</a></li>
-<li><a href="#"> Cuatro</a></li>
-<li><a href="#"> Cinco</a></li>
-<li><a href="#"> Seis</a></li>
-</ul>
-<h3>prueba css3</h3>
+{<ul>
+@foreach (var item in @ViewBag.articulos) 
+{<li><a href="#">@item.titulo</a>
+<p>Publicado por:</p>
+<h3>@item.nombre @item.ap </h3>
+    </li>
 }
+    </ul>
+}
+@section cursos_recientes
+{<ul>
+@foreach (var item in @ViewBag.cursos) 
+{<li><a href="#">@item.titulo</a>
+<p>Publicado por:</p>
+<h3>@item.nombre @item.ap </h3>
+    </li>
+}
+    </ul>
+}
+@section tutoriales_recientes
+{<ul>
+@foreach (var item in @ViewBag.tutoriales) 
+{<li><a href="#">@item.titulo</a>
+<p>Publicado por:</p>
+<h3>@item.nombre @item.ap </h3>
+    </li>
+}
+    </ul>
+}
+@section libros_recientes
+{<ul>
+@foreach (var item in @ViewBag.libros) 
+{<li><a href="#">@item.titulo</a>
+<p>Publicado por:</p>
+<h3>@item.nombre @item.ap </h3>
+    </li>
+}
+    </ul>
+}
+

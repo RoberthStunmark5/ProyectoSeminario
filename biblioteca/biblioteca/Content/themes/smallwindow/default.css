@@ -137,18 +137,18 @@ img.right {
 	display: block;
 	float: left;
 	margin: 0 3px 0 0;
-	padding: 10px 15px 10px 15px;
+	padding: 12px 15px 10px 15px;
 	border: none;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
-	color: #575757;
+	color: #C0C0C0;
 }
 
 #menu a:hover {
 	margin: 0 3px 0 0;
-	padding: 10px 15px 10px 15px;
+	padding: 8px 15px 10px 15px;
 	color: #B2B2B2;
 }
 
@@ -192,7 +192,10 @@ img.right {
 	padding-right: 20px;
 }
 
-.post {
+.post 
+{
+	box-shadow: 7px 7px 7px #000000;
+	border-radius: 5px 5px 5px 5px;
 	margin-bottom: 20px;
 	padding-bottom: 15px;
 	line-height: 200%;
@@ -224,13 +227,19 @@ img.right {
 .title a:hover {
 }
 
-.byline {
+.byline
+{
 	margin: 0 15px 20px 15px;
 	text-transform: uppercase;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
 }
 
-.entry {
+.entry
+{
 	padding: 0px 15px;
+	color: #999999;
 }
 
 .links {
@@ -268,7 +277,7 @@ img.right {
 	float: left;
 	width: 200px;
 	padding: 0 0 0 21px;
-	background: url(images/img03.jpg) repeat-y left top;
+	/*background: url(images/img03.jpg) repeat-y left top;*/
 }
 
 .sidebar ul {
@@ -277,37 +286,51 @@ img.right {
 	list-style: none;
 }
 
-.sidebar li {
-	padding: 0 0 20px 0;
+.sidebar li
+{
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 7px 7px 7px #000000;
+	padding: 0 0 10px 0;
 	background: url(images/img06.jpg) repeat-x left top;
 }
 
-.sidebar li ul {
+.sidebar li ul 
+{
+
 	padding: 0px 15px;
 }
 
-.sidebar li li {
-	padding: 8px 0 8px 0px;
+.sidebar li li
+{
+	border: thin groove #333333;
+	box-shadow: 3px 3px 6px #000000;
+	border-radius: 5px 5px 5px 5px;
+	padding: 8px 8px 8px 8px;
 	background: url(images/img04.jpg) repeat-x left bottom;
+	margin-top: 4px;
 }
 
-.sidebar li h2 {
-	margin: 0 0 10px 0;
+.sidebar li h2
+{
+	margin: 0px 7px 5px 0;
 	padding: 15px 15px 5px 15px;
 	font-size: 16px;
 	font-weight: normal;
 	color: #FFFFFF;
 }
-.sidebar li h3 {
-	margin: 0 0 10px 0;
-	padding: 15px 15px 5px 15px;
+.sidebar li h3
+{
+	margin: 0 0 0px 0;
+	padding: 0px 15px 0px 15px;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
 }
 
-.sidebar p {
-	padding: 0px 15px;
+.sidebar p
+{
+	padding: 0px 10px;
+	color: #999999;
 }
 
 /* Search */

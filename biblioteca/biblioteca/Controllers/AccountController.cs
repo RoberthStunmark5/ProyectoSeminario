@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.IO;
 using biblioteca.Models;
 
 namespace biblioteca.Controllers
@@ -38,7 +39,7 @@ namespace biblioteca.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("About", "Home");
+                        return RedirectToAction("Usuario", "Usuario");
                     }
                 }
                 else
@@ -50,7 +51,7 @@ namespace biblioteca.Controllers
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
-
+        
         //
         // GET: /Account/LogOff
 
@@ -78,6 +79,7 @@ namespace biblioteca.Controllers
             if (ModelState.IsValid)
             {
                 // Intento de registrar al usuario
+            
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
@@ -87,11 +89,14 @@ namespace biblioteca.Controllers
                     System.Guid idus = db.aspnet_Users.Where(a => a.UserName == model.UserName).Select(a => a.UserId).ToArray()[0];
                     System.Guid idrol = db.aspnet_Roles.Where(a => a.RoleName == "usuario").Select(a => a.RoleId).ToArray()[0];
                     aspnet_UsersInRoles rel = new aspnet_UsersInRoles() { RoleId = idrol, UserId = idus };
+                    Usuario rel1 = new Usuario() { UserId=idus};
                     db.aspnet_UsersInRoles.InsertOnSubmit(rel);
+                    db.Usuario.InsertOnSubmit(rel1);
                     db.SubmitChanges();
                     
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Perfil", "Account");
+
                 }
                 else
                 {
@@ -103,6 +108,57 @@ namespace biblioteca.Controllers
             return View(model);
         }
 
+        [Authorize]
+        public ActionResult Perfil()
+        {
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Perfil(PerfilModel model, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                bool informacionpersonal = true;
+                var Url = "";
+                //try
+                //{
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        var fileName = Path.GetFileName(file.FileName);
+
+                        var path = Path.Combine(Server.MapPath("~/App_Data/Archivos/Perfiles"), fileName);
+                        file.SaveAs(path);
+                        Url = fileName;
+                    }
+                    MembershipUser UsuarioActual = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
+                    DataClasses1DataContext db = new DataClasses1DataContext();
+                    System.Guid idus = db.aspnet_Users.Where(a => a.UserName == UsuarioActual.UserName).Select(a => a.UserId).ToArray()[0];
+                    Usuario Usuario = db.Usuario.Single(a => a.UserId == idus);
+                    Usuario.Nombre = model.Nombre;
+                    Usuario.App = model.App;
+                    Usuario.Apm = model.Apm;
+                    Usuario.UrlAvatar=Url;
+                    Usuario.Intereses = model.Intereses;
+                    Usuario.Ubicacion = model.Ubicacion;
+                    db.SubmitChanges();
+                //}
+                //catch (Exception)
+                //{
+                  //  informacionpersonal = false;
+                //}
+                if (informacionpersonal)
+                {
+                    return RedirectToAction("Usuario", "Usuario");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error al insertar datos ... verifique e intentelo de nuevo.");
+                }
+            }
+            return View(model);
+        }
         //
         // GET: /Account/ChangePassword
 

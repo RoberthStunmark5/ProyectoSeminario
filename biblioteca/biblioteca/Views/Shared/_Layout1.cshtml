@@ -23,18 +23,21 @@
             <nav id="menu">
 	            <ul id="main">
 		            <li>@Html.ActionLink("Principal", "Index", "Home")</li>
-                    
+                    <li>@Html.ActionLink("Captcha","Captcha","Home")</li>
                      @if (@User.Identity.IsAuthenticated)
                      {   <li>@Html.ActionLink("Mi Perfil", "Usuario", "Usuario")</li>
-                         <li>@Html.ActionLink("Publicar Libro", "", "")</li>
-                         <li>@Html.ActionLink("Crear Articulo", "", "")</li>
-                         <li>@Html.ActionLink("Crear Curso", "", "")</li>
-                         <li>@Html.ActionLink("Crear Tutorial", "", "")</li>
-                         <li>@Html.ActionLink("Modificar Perfil", "", "")</li>
-                         <li>@Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Account")</li>}
+                         <li>@Html.ActionLink("Publicar Libro", "publicar_libro", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Articulo", "crear_articulo", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Curso", "crear_curso", "Usuario")</li>
+                         <li>@Html.ActionLink("Crear Tutorial", "crear_tutorial", "Usuario")</li>
+                         <li>@Html.ActionLink("Modificar Perfil", "Perfil", "Account")</li>
+                         <li>@Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Account")</li>
+                       
+                      }
 	            </ul>
 	            @if (@User.Identity.IsAuthenticated == false)
              {<ul id="feed">
+             <li>@Html.ActionLink("Registrarse", "Register", "Account")</li>
              <li>@Html.ActionLink("Acerca de Nosotros", "About", "Home")</li>
                 <li><a href="#">Noticias</a></li>
 		            <li><a href="#">Comentarios </a></li>
@@ -48,68 +51,49 @@
 <div id="page">
 	<!-- start content -->
 	<div id="content">
-		<div style="padding-bottom: 20px;"><img src="../../Content/themes/smallwindow/images/image05.jpg" alt="" /></div>
-		<div class="post">
+		<div>
+        <img src="../../Content/themes/smallwindow/images/image05.jpg" alt="" style="box-shadow: 7px 7px 7px #000000;border-radius: 5px 5px 5px 5px; border: thin groove #333333;"/>
+        </div>
+	        <div class="post">
 			<h1 class="title"><a href="#">Bienvenido A Nuestro Sitio</a></h1>
 			<p class="byline"><small>Diseñado por:  <a href="http://www.facebook.com/RoberthStun/" title="Roberth_Stun@hotmail.com">Roberto Campos</a></small></p>
 			<div class="entry">
 				@RenderBody()
       		</div>
 		</div>
-		
+	
         @if (IsSectionDefined("libro_top"))
         {@RenderSection("libro_top")}
         else
         { <div class="post">
             <h2 class="title"><a href="#">Libro Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more" title ="ver todo el contenido" >leer historia completa</a></p>
-                <p class="byline"><small>Comentar</small></p>
-                <form id="comentario_libro" method="get" action="#">
-					<div>
-						<input type="text" name="l" id="l" size="70%" value="" />
-						<br />
-					</div><p class="byline"><small>Comentar</small></p>
-				</form>
-			</div>
-            </div>
+			<p class="byline"><small>Sin publicaciones <a href="#">vacio</a></small></p>
+		</div>
         }
+   
 		@if (IsSectionDefined("articulo_top"))
   {@RenderSection("articulo_top")}
   else
   { <div class="post">
             <h2 class="title"><a href="#">Articulo Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more">leer historia completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
-            </div>
+			<p class="byline"><small>Sin publicaciones <a href="#">vacio</a></small></p>
+			 </div>
   }
         @if (IsSectionDefined("curso_top"))
         {@RenderSection("curso_top")}
         else
         { <div class="post">
 			<h2 class="title"><a href="#">Cursos destacado</a></h2>
-			<p class="byline"><small>Posteado en ...... 1st, 2012 por <a href="#">dfdfjkjfplates</a></small></p>
-			<div class="entry">
-				<p>Pkjlskdjfslkdjflskdjfklsdjflkfwpeotiwpoejgk;lsdgkw[epg[pek[pgekgl;sdkgw[pekwg. </p>
-				<p class="links"><a href="#" class="more">Leer histori completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
+			<p class="byline"><small>Sin publicaciones<a href="#">vacio</a></small></p>
 		</div>}
+        
         @if (IsSectionDefined("tutorial_top"))
         {@RenderSection("tutorial_top")}
         else
         { <div class="post">
             <h2 class="title"><a href="#">Tutorial Destacado</a></h2>
-			<p class="byline"><small>Ejemplo de post 2012 por <a href="#">cSSc Tddss</a></small></p>
-			<div class="entry">
-				<p>dererkfm. </p>
-				<p class="links"><a href="#" class="more">leer historia completa</a> &nbsp;&nbsp;&nbsp;</p>
-			</div>
-            </div>
+			<p class="byline"><small>Sin publicaciones <a href="#">Vacio</a></small></p>
+         </div>
         }
 	</div>
 	<!-- end content -->
@@ -169,11 +153,11 @@
 			</li>
 			<li>
 				<h2>Sitios Relacionados</h2>
-				<p><a href="#">dalgor</a>
-                 <a href="#">otrodfipsum</a>
-                  <a href="#">ltredsforem</a>
-                   <a href="#">scuatroodit amet</a>
-                    <a href="#">cinciodolor</a>
+				<p><a href="#">www.google.com.bo</a>
+                 <a href="#">www.facebook.com</a>
+                  <a href="#">www.wikipedia.com</a>
+                   <a href="#">www.youtube.com</a>
+                    <a href="#">www.tuhistory.com</a>
                      </p>
             </li>
             <li>
@@ -193,7 +177,8 @@
 				<div id="calendar_wrap">
 					<table width ="100%" summary="Calendar">
 						<caption>
-					       @DateTime.Now.ToLongDateString()
+					       @DateTime.Now.ToShortDateString()
+                           @DateTime.Now.ToLongDateString()
 						</caption>
 						<thead>
 							<tr>

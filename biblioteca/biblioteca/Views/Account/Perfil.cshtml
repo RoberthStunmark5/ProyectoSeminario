@@ -1,0 +1,50 @@
+﻿
+@model biblioteca.Models.PerfilModel
+
+@{
+    ViewBag.Title = "Perfil de Usuario";
+    Layout = "~/Views/Shared/_Session.cshtml";
+}
+
+<h2>Perfil de Usuario</h2>
+<p>
+    Use el formulario siguiente para sus datos Personales. 
+</p>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("Perfil", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "No se inserto los datos Personales. Corrija los errores e inténtelo de nuevo.")
+    <div>
+        <fieldset>
+            <legend>Información Personal</legend>
+
+                @Html.LabelFor(m => m.Nombre)
+                @Html.TextBoxFor(m => m.Nombre)
+                @Html.ValidationMessageFor(m => m.Nombre)
+
+                @Html.LabelFor(m => m.App)
+                @Html.TextBoxFor(m => m.App)
+                @Html.ValidationMessageFor(m => m.App)
+
+                @Html.LabelFor(m => m.Apm)
+                @Html.TextBoxFor(m => m.Apm)
+                @Html.ValidationMessageFor(m => m.Apm)
+
+                <label >Foto de Perfil</label>
+                <input type ="file" name="file" />
+                
+                @Html.LabelFor(m => m.Intereses)
+                @Html.TextAreaFor(m => m.Intereses)
+                @Html.ValidationMessageFor(m => m.Intereses)
+
+                @Html.LabelFor(m => m.Ubicacion)
+                @Html.TextBoxFor(m => m.Ubicacion)
+                @Html.ValidationMessageFor(m => m.Ubicacion)
+            <p>
+                <button type="submit">Enviar</button>
+            </p>
+        </fieldset>
+    </div>
+}

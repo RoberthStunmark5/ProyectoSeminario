@@ -2,43 +2,51 @@
 
 @{
     ViewBag.Title = "Iniciar sesión";
-    Layout = "~/Views/Shared/_Session.cshtml";
+    Layout = "~/Views/Shared/_Captcha.cshtml";
 }
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
 
-<p>
-    Escriba su nombre de usuario y contraseña o 
-    <span class="def">@Html.ActionLink("Regístrese", "Register")</span>
-     si no tiene una cuenta.
-</p>
+        $('#mc-form').motionCaptcha({
+            shapes: ['triangle', 'x', 'rectangle', 'circle', 'check', 'zigzag', 'arrow', 'delete', 'pigtail', 'star']
+        });
+    });
+	</script>
+
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-@Html.ValidationSummary(true, "No se ha iniciado la sesión. Corrija los errores e inténtelo de nuevo.")
 
-@using (Html.BeginForm()) {
-    <div>
-        <fieldset>
+
+<div id="wrap">
+<h2>@Html.ValidationSummary(true, "No se ha iniciado la sesión. Corrija los errores e inténtelo de nuevo.")</h2>
+		<div id="page">
+        <h2>Inicie Session o 
+        <a href = "@Url.Action("Register","Account")">Registrese</a> si no tiene una cuenta.</h2>
+        <form action="@Url.Action("LogOn","Account")" id="mc-form"  method ="post" class = "mc-active">
+                
                 @Html.LabelFor(m => m.UserName)
                  <span class="ico">
-                     <img src="../../Content/imagenes/user.png" alt="Username Icon" border="0">    
+                 <img src="../../Content/imagenes/user.png" alt="Username Icon" border="0">    
                  </span>
-
+                 
                 @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
+                <p>@Html.ValidationMessageFor(m => m.UserName)</p>
 
                 @Html.LabelFor(m => m.Password)
                 <span class="ico">
-                 <img src="../../Content/imagenes/pass.png" alt="Password Icon" border="0">    
+                <img src="../../Content/imagenes/pass.png" alt="Password Icon" border="0">    
                 </span>
                 @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-                </fieldset>
-                <fieldset>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe)
-                        <span class="password"><a href="#">Restablecer contraseña</a></span>
-                    	<button type=submit>ENVIAR</button>
-                </fieldset>
-        
-    </div>
-}
+                <p>@Html.ValidationMessageFor(m => m.Password)</p>
+                <div id="mc">
+            <p>Dibuje la forma en el cuadro para enviar su formulario:</p>
+            <canvas id="mc-canvas">Tu navegador no soporta el elemento canvas - por favor visitanos en un navegador moderno</canvas>
+         </div>
+       <p><input type="submit" disabled="disabled" value="Enviar" /></p>
+       <p><input type="hidden" id="mc-action" value="@Url.Action("LogOn","Account")" /></p>
+       <p><strong>Nota:</strong>"("<a onclick="window.location.reload()" href="#" title="Click para cargar una nueva forma">Cargar Nueva Forma</a>")"</p>
+</form>
+</div>
+</div>
+	
